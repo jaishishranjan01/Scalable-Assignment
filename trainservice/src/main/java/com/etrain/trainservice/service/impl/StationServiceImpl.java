@@ -9,10 +9,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class StationServiceImpl implements StationService {
 
     private final StationRepository stationRepository;
+
+    public StationServiceImpl(StationRepository stationRepository) {
+        this.stationRepository = stationRepository;
+    }
 
     @Override
     public List<Station> searchStations(String query) {

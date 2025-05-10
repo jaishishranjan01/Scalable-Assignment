@@ -19,6 +19,7 @@ public class JWTServiceImpl implements JWTService {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     }
 
+    @Override
     public String generateToken(String email) {
         return Jwts.builder()
                 .setSubject(email)
@@ -29,6 +30,7 @@ public class JWTServiceImpl implements JWTService {
                 .compact();
     }
 
+    @Override
     public String extractEmail(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())

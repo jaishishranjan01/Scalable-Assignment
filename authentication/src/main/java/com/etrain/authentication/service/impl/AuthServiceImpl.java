@@ -6,7 +6,6 @@ import com.etrain.authentication.entity.User;
 import com.etrain.authentication.repository.UserRepository;
 import com.etrain.authentication.service.AuthService;
 import com.etrain.authentication.service.JWTService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,31 +13,38 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JWTService jwtService;
 
+    public AuthServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, JWTService jwtService) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
+    }
+
+    @Override
     public String signup(SignupRequest signupRequest) {
         if (userRepository.findByEmail(signupRequest.getEmail()).isPresent()) {
             throw new RuntimeException("Email already registered");
         }
 
-        User user = User.builder()
-                .name(signupRequest.getName())
-                .age(signupRequest.getAge())
-                .mobile(signupRequest.getMobile())
-                .email(signupRequest.getEmail())
-                .address(signupRequest.getAddress())
-                .password(passwordEncoder.encode(signupRequest.getPassword()))
-                .build();
+        User user = new User();
+        user.setName(signupRequest.getName());
+        user.setAge(signupRequest.getAge());
+        user.setMobile(signupRequest.getMobile());
+        user.setEmail(signupRequest.getEmail());
+        user.setAddress(signupRequest.getAddress());
+        user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
+
 
         userRepository.save(user);
         return "Signup successful!";
     }
 
+    @Override
     public Map<String, String> login(LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid credentials"));

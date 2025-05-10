@@ -2,6 +2,7 @@ package com.etrain.trainservice.service.impl;
 
 import com.etrain.trainservice.dto.BookingRequest;
 import com.etrain.trainservice.dto.BookingResponse;
+import com.etrain.trainservice.dto.PassengerRequest;
 import com.etrain.trainservice.dto.TrainSearchRequest;
 import com.etrain.trainservice.entity.Passenger;
 import com.etrain.trainservice.entity.Ticket;
@@ -19,11 +20,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class TrainServiceImpl implements TrainService {
 
     private final TrainRepository trainRepository;
     private final TicketRepository ticketRepository;
+
+    public TrainServiceImpl(TrainRepository trainRepository, TicketRepository ticketRepository) {
+        this.trainRepository = trainRepository;
+        this.ticketRepository = ticketRepository;
+    }
 
     @Override
     public List<Train> searchTrains(TrainSearchRequest request) {
@@ -53,29 +58,33 @@ public class TrainServiceImpl implements TrainService {
 
         double totalFare = train.getFare() * numberOfSeats;
 
-        Ticket ticket = Ticket.builder()
-                .pnrNumber(TrainUtils.generatePnrNumber())
-                .trainId(train.getId())
-                .trainName(train.getTrainName())
-                .sourceStation(train.getSourceStation())
-                .destinationStation(train.getDestinationStation())
-                .journeyDate(LocalDate.now())
-                .transactionId("TXN" + System.currentTimeMillis())
-                .numberOfSeats(numberOfSeats)
-                .totalFare(totalFare)
-                .bookingStatus("Confirmed")
-                .build();
+        Ticket ticket = new Ticket();
+        ticket.setPnrNumber(TrainUtils.generatePnrNumber());
+        ticket.setTrainId(train.getId());
+        ticket.setTrainName(train.getTrainName());
+        ticket.setSourceStation(train.getSourceStation());
+        ticket.setDestinationStation(train.getDestinationStation());
+        ticket.setJourneyDate(LocalDate.now());
+        ticket.setTransactionId("TXN" + System.currentTimeMillis());
+        ticket.setNumberOfSeats(numberOfSeats);
+        ticket.setTotalFare(totalFare);
+        ticket.setBookingStatus("Confirmed");
+
 
         Ticket savedTicket = ticketRepository.save(ticket);
 
-        List<Passenger> passengers = request.getPassengers().stream()
-                .map(p -> Passenger.builder()
-                        .name(p.getName())
-                        .age(p.getAge())
-                        .gender(p.getGender())
-                        .ticket(savedTicket)
-                        .build())
-                .collect(Collectors.toCollection(ArrayList::new));
+        List<Passenger> passengers = new ArrayList<>();
+
+        for (PassengerRequest p : request.getPassengers()) {
+            Passenger passenger = new Passenger();
+            passenger.setName(p.getName());
+            passenger.setAge(p.getAge());
+            passenger.setGender(p.getGender());
+            passenger.setTicket(savedTicket);
+
+            passengers.add(passenger);
+        }
+
 
         savedTicket.setPassengers(passengers);
 

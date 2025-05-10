@@ -18,4 +18,28 @@ public class Station {
     private String stationName;
 
     private String stationCode;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
+    }
+
+    public String getStationCode() {
+        return stationCode;
+    }
+
+    public void setStationCode(String stationCode) {
+        this.stationCode = stationCode;
+    }
 }

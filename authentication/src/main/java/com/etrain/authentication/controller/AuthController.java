@@ -11,11 +11,14 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000") // if frontend on localhost:3000
 public class AuthController {
 
     private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody SignupRequest signupRequest) {

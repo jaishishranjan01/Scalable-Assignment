@@ -6,7 +6,6 @@ import lombok.*;
 
 @Entity
 @Table(name = "passengers", schema = "etrain")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -25,4 +24,52 @@ public class Passenger {
     @JoinColumn(name = "ticket_id")
     @JsonIgnore
     private Ticket ticket;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(String seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
 }
