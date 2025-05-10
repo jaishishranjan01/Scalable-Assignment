@@ -1,0 +1,13 @@
+-- Create etrain schema if not exists
+CREATE SCHEMA IF NOT EXISTS etrain;
+
+-- Create users table inside etrain schema
+CREATE TABLE IF NOT EXISTS etrain.users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER,
+    mobile BIGINT,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    address TEXT,
+    password VARCHAR(255) NOT NULL
+);

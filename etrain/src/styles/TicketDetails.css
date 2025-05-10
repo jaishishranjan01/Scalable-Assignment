@@ -1,0 +1,39 @@
+.ticket-details {
+    padding: 20px;
+  }
+  
+  .ticket-details h3, .ticket-details h4 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .pnr-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .pnr-table td, .pnr-table th {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  .print-button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .print-button {
+    background-color: #0077ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .print-button:hover {
+    background-color: #005ac1;
+  }
+  

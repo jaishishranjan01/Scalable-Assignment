@@ -1,0 +1,107 @@
+.pnr-check-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  height: 50px;
+  width: 100%;
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 25px;
+  font-weight: 700;
+  justify-content: center;
+}
+
+.input-field {
+
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  width: 40%;
+}
+
+.check-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: none;
+  width: 15%;
+}
+
+.result-box {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  border-radius: 0.25rem;
+}
+
+.pnr-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.pnr-table td,
+.pnr-table th {
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: left;
+}
+
+.pnr-table th {
+  background-color: #f3f4f6;
+}
+
+.result-text {
+  font-size: 0.875rem;
+  color: #1f2937;
+}
+
+.error-text {
+  color: #dc2626;
+}
+
+.error-message {
+  color: #8B0000;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.processing-payment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+}
+
+.processing-payment .spinner {
+  border: 5px solid rgba(0,0,0,0.1);
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  color: #8B0000;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}

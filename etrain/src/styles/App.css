@@ -1,0 +1,102 @@
+/* src/styles/App.css */
+
+.main-section {
+  min-height: 100vh;
+  background-color: #106EBE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px 20px 20px;
+}
+
+.content-wrapper {
+  width: 100%;
+  height: calc(100vh - 100px); /* Take height after navbar */
+}
+
+.image-container {
+  flex: 1;
+  background-color: #106EBE;
+  min-height: 600px;
+  display: none; /* Hide on mobile */
+}
+
+.form-container {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .image-container {
+    display: block;
+  }
+}
+
+.page-content {
+  padding-top: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: inherit;
+}
+
+.image-side {
+  flex: 1;
+  /* You can put an image background here if you want */
+}
+
+.form-side {
+  display: flex;
+  align-items: center;
+  justify-content: right; /* center horizontally inside left side */
+  align-self: center;
+  padding-right: 10%;
+}
+
+.left-image {
+  flex: auto;
+  background: url('../img/backgroung-train-2.jpg') no-repeat center center / cover;
+  height: 65%;
+  margin: 7.5% 20%;
+  width: 60%;
+  border-radius: 5%;
+  position: absolute;
+}
+.form-side-right {
+  justify-content: right;
+  width: inherit;
+  padding-top: 12%;
+}
+
+.card {
+  background-color: #FAF9F6;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 75%;
+  background-color: rgba(255, 255, 255, 0.13);
+  position: relative;
+  z-index: 1;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 50px 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #0FFCBE;
+}
+
+.h2 {
+  text-align: center;
+}
