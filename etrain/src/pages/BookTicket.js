@@ -19,8 +19,9 @@ function BookTicket() {
   const [passengers, setPassengers] = useState([{ name: '', age: '', gender: '' }]);
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('UPI');
-  const [ticketResult, setTicketResult] = useState(null); // ✅ store booked ticket here
+  const [ticketResult, setTicketResult] = useState(null); // store booked ticket here
   const navigate = useNavigate();
+  const baseURL = window._env_.REACT_APP_TRAIN_SERVICE_URL;
 
   const fetchStations = async (query, setStations) => {
     if (!query.trim()) {
@@ -28,7 +29,7 @@ function BookTicket() {
       return;
     }
     try {
-      const res = await axios.get(`http://localhost:8082/api/trains/stations/search?query=${query}`);
+      const res = await axios.get(`${window._env_.REACT_APP_TRAIN_SERVICE_URL}/api/trains/stations/search?query=${query}`);
       setStations(res.data);
     } catch (error) {
       console.error('Failed to fetch stations:', error);
@@ -42,7 +43,8 @@ function BookTicket() {
     }
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:8082/api/trains/search', {
+      
+      const res = await fetch(baseURL + '/api/trains/search', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -113,7 +115,7 @@ function BookTicket() {
       }
   
       // Payment Successful → Now Book
-      const res = await fetch('http://localhost:8082/api/trains/book', {
+      const res = await fetch(baseURL + '/api/trains/book', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -133,7 +135,7 @@ function BookTicket() {
       const bookingData = await res.json();
   
       //Now after booking, fetch the ticket details using PNR
-      const ticketRes = await axios.get(`http://localhost:8082/api/trains/pnr/${bookingData.pnrNumber}`, {
+      const ticketRes = await axios.get(`${window._env_.REACT_APP_TRAIN_SERVICE_URL}/pnr/${bookingData.pnrNumber}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -20,7 +20,8 @@ function Login({ setIsAuthenticated }) {
 
     //Otherwise, call backend API for normal user login
     try {
-      const res = await axios.post('http://localhost:8081/api/auth/login', { email, password });
+      const baseURL = window._env_.REACT_APP_AUTH_SERVICE_URL
+      const res = await axios.post( baseURL + "/api/auth/login", { email, password });
     
       const token = res.data.token; //Assuming backend sends { "token": "..." }
       console.log("Received token:", token);

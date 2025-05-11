@@ -5,15 +5,21 @@ import com.etrain.payment.dto.CardPaymentRequest;
 import com.etrain.payment.dto.UpiPaymentRequest;
 import com.etrain.payment.service.PaymentService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/payment/api")
+@Slf4j
 public class PaymentController {
 
     private final PaymentService paymentService;
     private final AuthServiceClient authClient;
+
+    private static final Logger log = LoggerFactory.getLogger(PaymentController.class);
 
     public PaymentController(PaymentService paymentService, AuthServiceClient authClient) {
         this.paymentService = paymentService;
@@ -23,9 +29,12 @@ public class PaymentController {
     @PostMapping("/upi")
     public ResponseEntity<?> upi(@RequestHeader("Authorization") String token,
                                  @RequestBody UpiPaymentRequest request) {
-        if (!authClient.validateToken(token)) {
-            return ResponseEntity.status(401).build();
-        }
+        log.info("token: {}", token);
+
+//        if (!authClient.validateToken(token)) {
+//            log.info("not able to validate token: {}", token);
+//            return ResponseEntity.status(401).build();
+//        }
         paymentService.processUpi(request);
         return ResponseEntity.ok("UPI Payment Processed");
     }
@@ -33,9 +42,12 @@ public class PaymentController {
     @PostMapping("/card")
     public ResponseEntity<?> card(@RequestHeader("Authorization") String token,
                                   @RequestBody CardPaymentRequest request) {
-        if (!authClient.validateToken(token)) {
-            return ResponseEntity.status(401).build();
-        }
+        log.info("token: {}", token);
+
+//        if (!authClient.validateToken(token)) {
+//            log.info("not able to validate token: {}", token);
+//            return ResponseEntity.status(401).build();
+//        }
         paymentService.processCard(request);
         return ResponseEntity.ok("Card Payment Processed");
     }

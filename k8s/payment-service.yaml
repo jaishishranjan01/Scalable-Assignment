@@ -15,15 +15,18 @@ spec:
       containers:
         - name: payment-service
           image: payment-service:1.0
+          imagePullPolicy: Never
           ports:
-            - containerPort: 8082
+            - containerPort: 8083
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://payment-db:5441/payment
+              value: jdbc:postgresql://host.docker.internal:5442/payment
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
             - name: SPRING_DATASOURCE_PASSWORD
               value: Admin@123
+            - name: TOKEN_VALIDATION_URL
+              value: http://etrain.local
 ---
 apiVersion: v1
 kind: Service
@@ -33,4 +36,4 @@ spec:
   selector:
     app: payment-service
   ports:
-    - port: 8082
+    - port: 8083

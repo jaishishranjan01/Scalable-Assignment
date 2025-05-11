@@ -7,7 +7,7 @@ function TrainInfo() {
 
   const fetchTrains = async () => {
     try {
-      const res = await axios.get('http://localhost:8083/api/trains');
+      const res = await axios.get(`${window._env_.REACT_APP_TRAIN_SERVICE_URL}/api/trains`);
       setTrains(res.data);
     } catch (err) {
       setTrains([]);

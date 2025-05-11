@@ -17,7 +17,7 @@ function PNRCheck() {
         return;
       }
 
-      const res = await axios.get(`http://localhost:8082/api/trains/pnr/${pnr}`, {
+      const res = await axios.get(`${window._env_.REACT_APP_TRAIN_SERVICE_URL}/api/train/api/trains/pnr/${pnr}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

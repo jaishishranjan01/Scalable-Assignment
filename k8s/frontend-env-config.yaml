@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-env
+  namespace: default
+  labels:
+    app: etrain-frontend
+
+data:
+  env.js: |
+    window._env_ = {
+      REACT_APP_TRAIN_SERVICE_URL: "http://etrain.local/api/train",
+      REACT_APP_AUTH_SERVICE_URL: "http://etrain.local/api/auth",
+      REACT_APP_PAYMENT_SERVICE_URL: "http://etrain.local/api/payment"
+    };

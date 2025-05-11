@@ -44,7 +44,7 @@ function Signup() {
         password: formData.password,
       };
 
-      const response = await axios.post('http://localhost:8081/api/auth/signup', signupData);
+      const response = await axios.post(window._env_.REACT_APP_AUTH_SERVICE_URL + '/api/auth/signup', signupData);
       console.log(response.data);
       alert('Signup Successful! Please login now.');
       navigate('/'); // Redirect to Home/Login page after signup

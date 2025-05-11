@@ -84,13 +84,13 @@ function Payment({ paymentMethod, setPaymentMethod, onConfirm, onCancel }) {
   
       if (paymentMethod === 'UPI') {
         await axios.post(
-          'http://localhost:8083/payment/api/upi',
+          `${window._env_.REACT_APP_PAYMENT_SERVICE_URL}/payment/api/upi`,
           { upiId, totalAmount: 999 }, // Replace 999 with actual amount if needed
           { headers: {  Authorization: `Bearer ${token}` } }
         );
       } else if (paymentMethod === 'Card') {
         await axios.post(
-          'http://localhost:8083/payment/api/card',
+          `${window._env_.REACT_APP_PAYMENT_SERVICE_URL}/payment/api/card`,
           {
             cardNumber: cardDetails.number,
             expiryMonth: cardDetails.expiryMonth,

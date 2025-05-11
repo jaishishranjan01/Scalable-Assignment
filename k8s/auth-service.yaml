@@ -15,11 +15,12 @@ spec:
       containers:
         - name: auth-service
           image: auth-service:1.0
+          imagePullPolicy: Never
           ports:
             - containerPort: 8081
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://auth-db:5440/auth
+              value: jdbc:postgresql://host.docker.internal:5444/auth
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
             - name: SPRING_DATASOURCE_PASSWORD

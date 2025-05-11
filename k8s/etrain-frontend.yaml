@@ -15,8 +15,17 @@ spec:
       containers:
         - name: etrain-frontend
           image: etrain-frontend:1.0
+          imagePullPolicy: Never
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: config-volume
+              mountPath: /usr/share/nginx/html/env.js
+              subPath: env.js
+      volumes:
+        - name: config-volume
+          configMap:
+            name: frontend-env
 ---
 apiVersion: v1
 kind: Service

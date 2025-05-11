@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.etrain</groupId>
 	<artifactId>payment</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>payment</name>
 	<description>Train payment framework for Etrain</description>
 	<url/>
@@ -80,6 +80,11 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.17</version>
 		</dependency>
 	</dependencies>
 

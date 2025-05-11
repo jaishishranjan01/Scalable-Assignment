@@ -1,0 +1,5 @@
+window._env_ = {
+  REACT_APP_TRAIN_SERVICE_URL: "http://localhost:8082",
+  REACT_APP_AUTH_SERVICE_URL: "http://localhost:8081",
+  REACT_APP_PAYMENT_SERVICE_URL: "http://localhost:8083"
+};
